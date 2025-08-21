@@ -1,0 +1,483 @@
+{
+	"info": {
+		"_postman_id": "e9264736-38db-4619-bf3b-318276606b0e",
+		"name": "BOOTCAMP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16212336",
+		"_collection_link": "https://warped-trinity-302621.postman.co/workspace/1aa507b6-7b1c-42c1-b877-a214ac5a2475/collection/16212336-e9264736-38db-4619-bf3b-318276606b0e?action=share&source=collection_link&creator=16212336"
+	},
+	"item": [
+		{
+			"name": "a. GET ALL USER",
+			"item": [
+				{
+					"name": "Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dummyjson.com/users",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dummyjson.com/uses",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"uses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "b. GET SINGLE USER",
+			"item": [
+				{
+					"name": "Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dummyjson.com/users/8",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dummyjson.com/users/209",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"209"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "c. ADD A USER",
+			"item": [
+				{
+					"name": "Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"John\",\r\n    \"lastName\" : \"Fulan\",\r\n    \"age\" : 26,\r\n    \"gender\" : \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dummyjson.com/users/add",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"\",\r\n    \"lastName\" : \"\",\r\n    \"age\" : 26,\r\n    \"gender\" : \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dummyjson.com/users/add",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative Without \"\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : John,\r\n    \"lastName\" : Fulan,\r\n    \"age\" : 26,\r\n    \"gender\" : \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dummyjson.com/users/add",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "d. UPDATE A USER",
+			"item": [
+				{
+					"name": "Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Layla\",\r\n    \"lastName\": \"Hudson\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dummyjson.com/users/100",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dummyjson.com/users/250",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"250"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative With Invalid ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dummyjson.com/users/Samantha",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"Samantha"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "e. DELETE A USER",
+			"item": [
+				{
+					"name": "Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dummyjson.com/users/91",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"91"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dummyjson.com/users/jhonson",
+							"protocol": "https",
+							"host": [
+								"dummyjson",
+								"com"
+							],
+							"path": [
+								"users",
+								"jhonson"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
